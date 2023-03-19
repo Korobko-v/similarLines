@@ -36,6 +36,7 @@ public class StringUtils {
             AtomicInteger count = new AtomicInteger();
             values.forEach(value -> {
 
+                //для проверки сходства разбиваем каждую строку на отдельные слова
                 List<String> keyWords = Arrays.asList(key.split(" "));
                 List<String> valueWords = Arrays.asList(value.split(" "));
 
@@ -67,6 +68,11 @@ public class StringUtils {
                 .size() == 1) {
             pairs.put(keys.get(0), values.get(0));
         }
+
+        //если (при равном количестве сопоставляемых строк) остался ключ без пары
+
+        //т.к. значений больше (для упрощения проверки в промежуточную мапу в роли ключей использовал лист с меньшим
+        //или равным количеством элементов), именно они в дальнейшем используются в роли ключей в финальной мапе
         String singleKey = keys
                 .stream()
                 .filter(s -> !pairs.containsKey(s))
